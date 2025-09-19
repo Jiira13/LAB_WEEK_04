@@ -18,6 +18,12 @@ class CafeAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
             }
 
             override fun createFragment(position: Int): Fragment {
-                return CafeDetailFragment()
+                val descResId = when(position) {
+                    0 -> R.string.starbucks_desc
+                    1 -> R.string.janjiw_desc
+                    2 -> R.string.kopken_desc
+                    else -> throw IllegalStateException("Invalid position $position")
+                }
+                return CafeDetailFragment.newInstance(descResId)
             }
         }
